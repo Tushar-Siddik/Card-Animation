@@ -1,0 +1,69 @@
+<html>
+<head>
+<style>
+
+body {
+  overflow: hidden;
+    background: hsl(70,15%,75%);
+}
+.hand div {
+  transition: 0.2s;
+}
+.hand div:hover {
+  transform:translate(0,-35px);
+}
+.hand {
+  position: absolute;
+  transform: translate(calc(50vw - 200px), calc(50vh - 50px));
+  perspective: 1000px;
+  width: 600px;
+  height: 150px;
+}
+.hand div:after, 
+.hand div:before {
+    content: '';
+    position: absolute;
+    background: radial-gradient(circle at center, wheat, steelblue);
+    border: 1px solid;
+    height: 180px;
+    width: 120px;
+    --rot: 0deg;
+    transform: 
+      translate(175px) 
+      rotatez(calc(var(--i) * 15deg)) 
+      rotatey(var(--rot));
+    transform-origin: 50% 200%;
+    transition: 0.5s;
+    backface-visibility:hidden;
+}
+.hand div:after  {
+    content: attr(data-card);
+    line-height:150px;
+    font-size:30px;
+    text-align: center;
+    background: radial-gradient(circle at center, wheat, white);
+    --rot: 180deg;
+}
+.hand:hover div:after,
+.hand:hover div:before {
+  transform:
+      translate(150px) 
+      translate(calc(var(--i) * 135px), 0) 
+      rotatez(0) 
+      rotatey(calc(180deg + var(--rot)));
+}
+
+</style>
+</head>
+
+<body>
+<div class="hand">
+  <div data-card="S" style="--i:-2.5"></div>
+  <div data-card="I" style="--i:-1.5"></div>
+  <div data-card="D" style="--i:-0.5"></div>
+  <div data-card="D" style="--i: 0.5"></div>
+  <div data-card="I" style="--i: 1.5"></div>
+  <div data-card="K" style="--i: 2.5"></div>
+</div>
+</body>
+</html>
